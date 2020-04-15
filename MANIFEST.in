@@ -1,1 +1,2 @@
-include admin_log/locale/*/LC_MESSAGES/django.po
+include admin_wizard/locale/*/LC_MESSAGES/django.po
+recursive-include admin_wizard/templates *

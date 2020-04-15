@@ -22,4 +22,4 @@ jobs:
           pip install mypy django-stubs
       - name: Run Mypy tests
         run: |
-          mypy --config-file=mypy.ini admin_smoke
+          mypy --config-file=mypy.ini admin_wizard

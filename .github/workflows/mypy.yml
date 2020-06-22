@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requires.txt
+          pip install -r requirements.txt
           pip install mypy django-stubs
       - name: Run Mypy tests
         run: |

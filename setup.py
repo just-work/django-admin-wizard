@@ -71,13 +71,14 @@ setup(
     author_email='zimbler@gmail.com',
     description='Wizard implementation for Django admin',
     install_requires=[
-        'Django'
+        'Django>=2.2,<3.2'
     ],
     classifiers=[
         'Development Status :: 1 - Planning',
         'Environment :: Console',
         'Framework :: Django :: 2.2',
         'Framework :: Django :: 3.0',
+        'Framework :: Django :: 3.1',
         'Operating System :: POSIX',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',

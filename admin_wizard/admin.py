@@ -3,7 +3,6 @@ from typing import Type, Any, Dict, cast, Optional
 from django import forms
 from django.contrib import admin
 from django.contrib.admin import helpers
-from django.contrib.auth.forms import AdminPasswordChangeForm
 from django.db import models
 from django.db.models import QuerySet
 from django.http import HttpRequest, HttpResponse
@@ -25,11 +24,10 @@ def admin_url(obj: models.Model) -> str:
 class WizardBase:
     model_admin: admin.ModelAdmin
 
-    def get_admin_form(self, form: forms.BaseForm) -> helpers.AdminForm:
+    def get_admin_form(self, form: forms.ModelForm) -> helpers.AdminForm:
         fieldsets = [(None, {'fields': list(form.fields)})]
         admin_form = helpers.AdminForm(
-            # FIXME: django-stubs bug #358
-            cast(AdminPasswordChangeForm, form),
+            form,
             fieldsets,
             prepopulated_fields={},
             model_admin=self.model_admin)
@@ -143,7 +141,7 @@ class UpdateDialog(WizardBase, UpdateView):
             url = None
         return redirect(url or admin_url(self.get_object(self.get_queryset())))
 
+    # noinspection PyMethodMayBeStatic
     def form_valid(self, form: forms.BaseForm) -> None:  # type: ignore
-
         form = cast(forms.ModelForm, form)
         form.save()

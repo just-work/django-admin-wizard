@@ -71,7 +71,7 @@ setup(
     author_email='zimbler@gmail.com',
     description='Wizard implementation for Django admin',
     install_requires=[
-        'Django>=2.2,<4.1'
+        'Django>=2.2,<4.2'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -81,6 +81,7 @@ setup(
         'Framework :: Django :: 3.1',
         'Framework :: Django :: 3.2',
         'Framework :: Django :: 4.0',
+        'Framework :: Django :: 4.1',
         'Operating System :: POSIX',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',

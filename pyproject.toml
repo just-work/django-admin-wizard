@@ -5,6 +5,9 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools-git-versioning]
 enabled = true
 
+[tool.setuptools.package-data]
+admin_wizard = ["**/*.html"]
+
 [project]
 name = "django-admin-wizard"
 dynamic = ["version"]

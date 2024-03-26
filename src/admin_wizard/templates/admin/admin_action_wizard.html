@@ -40,6 +40,9 @@
                 {% for fieldset in adminform %}
                     {% include "admin/includes/fieldset.html" %}
                 {% endfor %}
+                {% if adminform.form.errors %}
+                    {{ adminform.form.non_field_errors }}
+                {% endif %}
             {% endblock %}
             <input type="hidden" name="action" value="{{ action }}"/>
             <input type="hidden" name="_redirect" value="{{ redirect }}"/>

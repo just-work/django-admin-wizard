@@ -41,6 +41,14 @@ class MyModelAdminTestCase(AdminTests, AdminWizardBaseTestCase):
         self.assert_object_fields(
             self.another, name='not_changed')
 
+    def test_non_field_errors_in_action(self):
+        """ Check non field errors rendering. """
+        name = admin.UpdateAction.__name__
+
+        r = self.post_admin_action(name, self.obj, name='xxx')
+
+        self.assertIn("xxx is forbidden", r.content.decode('utf-8'))
+
     def test_rename_dialog(self):
         """ Checks action dialog form_valid handling."""
         r = cast(TemplateResponse, self.post_admin_url(
@@ -57,3 +65,9 @@ class MyModelAdminTestCase(AdminTests, AdminWizardBaseTestCase):
             self.obj, name='new_name')
         self.assert_object_fields(
             self.another, name='not_changed')
+
+    def test_non_field_errors_in_dialog(self):
+        """ Check non field errors rendering. """
+        r = self.post_admin_url('rename', self.obj, name='xxx')
+
+        self.assertIn("xxx is forbidden", r.content.decode('utf-8'))

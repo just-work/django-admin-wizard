@@ -23,9 +23,12 @@
         <form action="" method="post">
             {% csrf_token %}
             {% block field_sets %}
-            {% for fieldset in adminform %}
-              {% include "admin/includes/fieldset.html" %}
-            {% endfor %}
+                {% for fieldset in adminform %}
+                    {% include "admin/includes/fieldset.html" %}
+                {% endfor %}
+                {% if adminform.form.errors %}
+                    {{ adminform.form.non_field_errors }}
+                {% endif %}
             {% endblock %}
             {{ redirect_form }}
             <input type="hidden" name="action" value="{{ action }}"/>

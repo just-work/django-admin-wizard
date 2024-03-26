@@ -42,7 +42,8 @@ class UpdateAction(WizardBase, FormView):
     queryset: models.QuerySet
 
     def __init__(self, form_class: Type[forms.BaseForm],
-                 title: str = None, short_description: str = None):
+                 title: Optional[str] = None,
+                 short_description: Optional[str] = None):
         super().__init__()
         # used as action slug in ModelAdmin.actions
         self.__name__: str = self.__class__.__name__
@@ -102,8 +103,11 @@ class UpdateDialog(WizardBase, UpdateView):
     # needed for as_view() call
     model_admin: admin.ModelAdmin = None  # type: ignore
 
-    def __init__(self, *, model_admin: admin.ModelAdmin, title: str = None,
-                 short_description: str = None, **kwargs: Any):
+    def __init__(self, *,
+                 model_admin: admin.ModelAdmin,
+                 title: Optional[str] = None,
+                 short_description: Optional[str] = None,
+                 **kwargs: Any):
         super().__init__(**kwargs)
         self.model_admin = model_admin
         self.title = title or self.__class__.__name__
